@@ -1,0 +1,26 @@
+{
+  "name": "wpp-agent",
+  "module": "./src/index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run .",
+    "start-dev": "bun run . | pino-pretty"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.10.7",
+    "@types/bun": "latest",
+    "@types/qrcode": "^1.5.5"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.9",
+    "pino": "^10.0.0",
+    "pino-pretty": "^13.1.1",
+    "qrcode": "^1.5.4",
+    "whatsapp-web.js": "^1.34.1",
+    "zod": "^4.1.12"
+  }
+}
