@@ -48,7 +48,7 @@ For starting the application, you need to set the following environment variable
 | ----------- | ---------------------------------------- | ---------------------------------- |
 | `AMQP__URI` | The AMQP URI for connecting to RabbitMQ. | `"amqp://user:pass@rabbitmq:5672"` |
 
-Also, you can set the following optional environment variables:
+Optionally, you can set the following optional environment variables:
 
 | Variable                   | Description                                            | Default values         | Possible values                                                |
 | -------------------------- | ------------------------------------------------------ | ---------------------- | -------------------------------------------------------------- |
