@@ -2,6 +2,7 @@
   "name": "wpp-agent",
   "module": "./src/index.ts",
   "type": "module",
+  "version": "v1.0.0",
   "private": true,
   "scripts": {
     "start": "bun run .",
