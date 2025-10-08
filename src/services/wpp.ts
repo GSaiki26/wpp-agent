@@ -18,7 +18,7 @@ import {
 import type { AMQPSettings, WppSettings } from "../settings";
 import type AMQPService from "./amqp";
 
-const TYPING_INTERVAL = 25000;
+const TYPING_INTERVAL = 25 * 1000;
 
 class WppService {
   settings: WppSettings;
@@ -59,7 +59,7 @@ class WppService {
           chatName: chat.name,
           bodySize: Buffer.from(msg.body).length,
         },
-        "Message received."
+        "Wpp message received."
       );
 
       // If a group, gets the sender number
@@ -109,7 +109,7 @@ class WppService {
     amqpSvc.channel!.consume(this.amqpSettings.AMQP__MSG_SEND_QUEUE, async (msg) => {
       if (!msg) return;
       const logger_ = logger.child({ queue: this.amqpSettings.AMQP__MSG_SEND_QUEUE });
-      logger_.info("Message received.");
+      logger_.info("AMQP: message received.");
 
       try {
         const parsedMsg = await WppInMessageSchema.parseAsync(msg.content.toString());
@@ -145,6 +145,15 @@ class WppService {
       media,
       caption: msg.attachment?.caption,
       isViewOnce: msg.attachment?.isViewOnce,
+
+      sendAudioAsVoice: msg.attachment?.sendAudioAsVoice,
+      sendVideoAsGif: msg.attachment?.sendVideoAsGif,
+      sendMediaAsSticker: msg.attachment?.sendMediaAsSticker,
+      sendMediaAsDocument: msg.attachment?.sendMediaAsDocument,
+      sendMediaAsHd: msg.attachment?.sendMediaAsHd,
+
+      stickerName: msg.attachment?.stickerName,
+      stickerAuthor: msg.attachment?.stickerAuthor,
     });
     logger.info("The message was sent successfully.");
   }

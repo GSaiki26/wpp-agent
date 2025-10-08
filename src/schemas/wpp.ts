@@ -24,7 +24,7 @@ export const WppMessageSchema = z.object({
   chatName: z.string().readonly(),
   chatId: z.string().readonly(),
 
-  contactName: z.string().readonly(),
+  contactName: z.string().readonly().optional(),
   contactId: z.string().readonly(),
 
   body: z.string().readonly(),
@@ -40,7 +40,10 @@ export const WppInMessageSchema = z.object({
   attachment: WppAttachmentSchema.optional(),
 
   simulateTyping: z.boolean().default(false),
-  simulateTypingDelay: z.number().min(0).default(25),
+  simulateTypingDelay: z
+    .number()
+    .min(0)
+    .default(5 * 1000),
 });
 
 export type WppMessage = z.infer<typeof WppMessageSchema>;
